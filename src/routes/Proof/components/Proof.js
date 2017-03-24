@@ -3,27 +3,18 @@ import Board from './Board'
 import './proof.scss'
 export const Proof = (props) => ({
   render () {
-    let { formula, generateEquation, equation, onAnswerChanged } = this.props
+    let { formula, generateEquation, equation, valid } = this.props
+    let isValid = valid ? equation.results : '?'
     return (
       <div className='proof' >
         <button className='btn btn-default' onClick={generateEquation}>
           Reset
-        </button> <h2>{ formula }</h2>
-        <Board equation={equation} onAnswerChanged={onAnswerChanged} />
+        </button> <h2>{ formula }{ isValid }</h2>
+        <Board {...this.props} />
       </div>
     )
   }
 })
-
-// export const Proof = (props) => (
-//  <div className='proof' >
-//    <button className='btn btn-default' onClick={props.generateEquation} >
-//      Reset
-//    </button> <h2>{ props.formula }</h2>
-//    <Board equation={props.equation} onAnswerChanged={props.onAnswerChanged} />
-//  </div>
-// )
-
 
 Proof.propTypes = {
   formula: React.PropTypes.string.isRequired,

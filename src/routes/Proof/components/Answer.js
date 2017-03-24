@@ -5,10 +5,9 @@ export const Answer = (props) => ({
     props.onAnswerChanged({ position: event.target.dataset.id, value: event.target.value })
   },
   render () {
-    let { columnCount, answer } = this.props.equation
-    let cells = []
-    for (let i = 0; i < columnCount; i++) {
-      cells.push(i)
+    let { answer } = this.props
+    if (!answer) {
+      return <div /> // the values has not been initialized yet
     }
     return (
       <div className='rowWrapper'>
@@ -23,6 +22,6 @@ export const Answer = (props) => ({
   }
 })
 Answer.propTypes = {
-  equation: React.PropTypes.object.isRequired
+  answer: React.PropTypes.array.isRequired
 }
 export default Answer

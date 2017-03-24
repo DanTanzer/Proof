@@ -4,7 +4,8 @@ import {
   ADD_ERROR,
   SET_EQUATION,
   SET_ANSWER,
-  VALIDATE_ANSWER
+  VALIDATE_ANSWER,
+  SET_ANSWER_DEFAULT
 } from './actions'
 
 export const addReducer = (state = 0, action) => {
@@ -44,8 +45,10 @@ export const addError = (state = [], action) => {
   }
 }
 
-export const answerReducer = (state = 0, action) => {
+export const answerReducer = (state = [], action) => {
   switch (action.type) {
+    case SET_ANSWER_DEFAULT:
+      return [...action.payload]
     case SET_ANSWER:
       let temp = [...state]
       temp[action.payload.position] = action.payload.value
@@ -55,7 +58,7 @@ export const answerReducer = (state = 0, action) => {
   }
 }
 
-export const validateAnswerReducer = (state = 0, action) => {
+export const isValidAnswerReducer = (state = false, action) => {
   switch (action.type) {
     case VALIDATE_ANSWER:
       return action.payload
@@ -64,5 +67,14 @@ export const validateAnswerReducer = (state = 0, action) => {
   }
 }
 
+    //  injectReducer(store, { key: 'equation', reducer: equationReducer })
+    //  injectReducer(store, { key: 'formula', reducer: formulaReducer })
+    //  injectReducer(store, { key: 'answer', reducer: answerReducer })
+    //  injectReducer(store, { key: 'valid', reducer: isValidAnswerReducer })
 
-export default equationReducer
+// export default combineReducers({
+//  equation: equationReducer,
+//  formula: formulaReducer,
+//  answer: answerReducer,
+//  valid: isValidAnswerReducer
+// })

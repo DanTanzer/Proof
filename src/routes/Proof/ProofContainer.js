@@ -9,7 +9,9 @@ const mapDispatchToProps = {
 
 const mapStateToProps = (state) => ({
   equation: state.equation,
-  formula: state.formula
+  formula: state.formula,
+  valid: state.valid,
+  answer: state.answer
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Proof)

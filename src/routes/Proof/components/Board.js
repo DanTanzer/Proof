@@ -11,7 +11,7 @@ export const Board = (props) => ({
     if (rows === undefined) return <div />
     let board = (
       <div className='board' >
-        <BorrowCarry {... this.props} />
+        <BorrowCarry {...this.props} />
         {
           rows.map(row => {
             return <Row key={i++} {...row} id={i} columnCount={columnCount} />

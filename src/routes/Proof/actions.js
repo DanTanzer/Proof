@@ -8,29 +8,11 @@ export const SET_EQUATION = 'SET_EQUATION'
 export const ADD_ERROR = 'ADD_ERROR'
 export const SET_ANSWER = 'SET_ANSWER'
 export const VALIDATE_ANSWER = 'VALIDATE_ANSWER'
+export const SET_ANSWER_DEFAULT = 'SET_ANSWER_DEFAULT'
+
 // ------------------------------------
 // Actions
 // ------------------------------------
-export const generateEquationold = (dispatch) => {
-  utils.generateEquation((error, equation) => {
-    if (error) {
-      dispatch({
-        type: ADD_ERROR,
-        payload: error
-      })
-    } else {
-      dispatch({
-        type: SET_FORMULA,
-        payload: equation.formula
-      })
-      dispatch({
-        type: SET_EQUATION,
-        payload: equation
-      })
-    }
-  })
-}
-
 export const generateEquation = () => (dispatch) => {
   utils.generateEquation((error, equation) => {
     if (error) {
@@ -47,41 +29,22 @@ export const generateEquation = () => (dispatch) => {
         type: SET_EQUATION,
         payload: equation
       })
+      dispatch({
+        type: SET_ANSWER_DEFAULT,
+        payload: utils.padArray([], (equation.results + '').length + 1)
+      })
     }
   })
 }
-
-export const onAnswerchangedOld = (dispatch, x, obj) => {
+export const onAnswerChanged = (obj) => (dispatch, getState) => {
   dispatch({
     type: SET_ANSWER,
     payload: obj
   })
-  // console.log(state)
+  const state = getState()
+  const isValid = state.equation.results === utils.convertArrayToNumber(state.answer)
   dispatch({
     type: VALIDATE_ANSWER,
-    payload: obj.answer
+    payload: isValid
   })
-}
-export const on1 = (obj) => {
-  return (dispatch, getState) => {
-    console.log(obj, getState)
-    return new Promise((resolve) => {
-      console.log('made it')
-      resolve()
-    })
-  }
-}
-
-export const onAnswerChanged = (obj) => {
-  return (dispatch, getState) => {
-    dispatch({
-      type: SET_ANSWER,
-      payload: obj
-    })
-    console.log(getState)
-    dispatch({
-      type: VALIDATE_ANSWER,
-      payload: obj
-    })
-  }
 }

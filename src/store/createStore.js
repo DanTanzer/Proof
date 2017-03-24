@@ -37,6 +37,9 @@ export default (initialState = {}) => {
   )
   store.asyncReducers = {}
 
+  // add the store to the window
+  window.store = store
+
   // To unsubscribe, invoke `store.unsubscribeHistory()` anytime
   store.unsubscribeHistory = browserHistory.listen(updateLocation(store))
 

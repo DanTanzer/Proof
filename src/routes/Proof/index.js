@@ -1,5 +1,5 @@
 import { injectReducer } from '../../store/reducers'
-import { equationReducer, formulaReducer, answerReducer } from './reducers'
+import { equationReducer, formulaReducer, answerReducer, isValidAnswerReducer } from './reducers'
 
 export default (store) => ({
   path : 'proof',
@@ -11,9 +11,11 @@ export default (store) => ({
       /*  Webpack - use require callback to define
           dependencies for bundling   */
       const Proof = require('./ProofContainer').default
-      injectReducer(store, { key: 'equation', reducer: equationReducer })
-      injectReducer(store, { key: 'formula', reducer: formulaReducer })
-      injectReducer(store, { key: 'answer', reducer: answerReducer })
+      //injectReducer(store, { key: 'equation', reducer: equationReducer })
+      //injectReducer(store, { key: 'formula', reducer: formulaReducer })
+      //injectReducer(store, { key: 'answer', reducer: answerReducer })
+      //injectReducer(store, { key: 'valid', reducer: isValidAnswerReducer })
+
       /*  Return getComponent   */
       cb(null, Proof)
 
