@@ -1,20 +1,33 @@
 import React from 'react'
 
 export const Answer = (props) => ({
-  handleInputChange (event) {
-    props.onAnswerChanged({ position: event.target.dataset.id, value: event.target.value })
+  handleFocus (event) {
+    event.target.select()
+  },
+  handleKeyPress (event) {
+    let results = ((/\d/).test(event.key))
+    if (!results) {
+      event.preventDefault()
+    } else {
+      // values set by html5 data-{anything} are found in dataset
+      props.onAnswerChanged2(event.target.dataset.id, event.key)
+    }
   },
   render () {
-    let { answer } = this.props
-    if (!answer) {
+    let { answers } = this.props
+    if (!answers) {
       return <div /> // the values has not been initialized yet
     }
+    let keys = Object.keys(answers)
     return (
       <div className='rowWrapper'>
         {
-          answer.map((cell, index) => {
+          keys.map((cell, index) => {
             return <input key={index} data-id={index} type='text' className='answer'
-              onChange={this.handleInputChange} maxLength='1' />
+              maxLength='1'
+              value={answers[cell]}
+              onFocus={this.handleFocus}
+              onKeyUp={this.handleKeyPress} />
           })
         }
       </div>
@@ -22,6 +35,6 @@ export const Answer = (props) => ({
   }
 })
 Answer.propTypes = {
-  answer: React.PropTypes.array.isRequired
+  answers: React.PropTypes.object.isRequired
 }
 export default Answer

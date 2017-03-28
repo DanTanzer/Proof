@@ -9,7 +9,8 @@ export const Proof = (props) => ({
       <div className='proof' >
         <button className='btn btn-default' onClick={generateEquation}>
           Reset
-        </button> <h2>{ formula }{ isValid }</h2>
+        </button>
+        <h2>{ formula }{ isValid }</h2>
         <Board {...this.props} />
       </div>
     )
@@ -18,6 +19,7 @@ export const Proof = (props) => ({
 
 Proof.propTypes = {
   formula: React.PropTypes.string.isRequired,
+  answers: React.PropTypes.object.isRequired,
   equation: React.PropTypes.object.isRequired,
   generateEquation: React.PropTypes.func.isRequired,
   onAnswerChanged: React.PropTypes.func.isRequired

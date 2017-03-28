@@ -1,6 +1,11 @@
 import { combineReducers } from 'redux'
 import locationReducer from './location'
-import { equationReducer, formulaReducer, answerReducer, isValidAnswerReducer } from '../routes/Proof/reducers'
+import { equationReducer, formulaReducer, answerReducer,
+  answerReducer0,
+  answerReducer1,
+  answerReducer2,
+  answerReducer3,
+  isValidAnswerReducer } from '../routes/Proof/reducers'
 
 export const makeRootReducer = (asyncReducers) => {
   return combineReducers({
@@ -8,6 +13,12 @@ export const makeRootReducer = (asyncReducers) => {
     equation: equationReducer,
     formula: formulaReducer,
     answer: answerReducer,
+    answers: combineReducers({
+      input0: answerReducer0,
+      input1: answerReducer1,
+      input2: answerReducer2,
+      input3: answerReducer3
+    }),
     valid: isValidAnswerReducer,
     ...asyncReducers
   })

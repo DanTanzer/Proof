@@ -7,6 +7,7 @@ export const Board = (props) => ({
   render () {
     let { equation } = this.props
     let { rows, columnCount } = equation
+
     let i = 0
     if (rows === undefined) return <div />
     let board = (
@@ -27,6 +28,7 @@ export default Board
 
 Board.propTypes = {
   equation: React.PropTypes.object,
+  answers: React.PropTypes.object,
   rows:React.PropTypes.array,
   columnCount:React.PropTypes.number,
   onAnswerChanged: React.PropTypes.func.isRequired

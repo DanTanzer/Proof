@@ -4,6 +4,10 @@ import {
   ADD_ERROR,
   SET_EQUATION,
   SET_ANSWER,
+  SET_ANSWER0,
+  SET_ANSWER1,
+  SET_ANSWER2,
+  SET_ANSWER3,
   VALIDATE_ANSWER,
   SET_ANSWER_DEFAULT
 } from './actions'
@@ -57,7 +61,6 @@ export const answerReducer = (state = [], action) => {
       return state
   }
 }
-
 export const isValidAnswerReducer = (state = false, action) => {
   switch (action.type) {
     case VALIDATE_ANSWER:
@@ -66,15 +69,35 @@ export const isValidAnswerReducer = (state = false, action) => {
       return state
   }
 }
-
-    //  injectReducer(store, { key: 'equation', reducer: equationReducer })
-    //  injectReducer(store, { key: 'formula', reducer: formulaReducer })
-    //  injectReducer(store, { key: 'answer', reducer: answerReducer })
-    //  injectReducer(store, { key: 'valid', reducer: isValidAnswerReducer })
-
-// export default combineReducers({
-//  equation: equationReducer,
-//  formula: formulaReducer,
-//  answer: answerReducer,
-//  valid: isValidAnswerReducer
-// })
+export const answerReducer0 = (state = ' ', action) => {
+  switch (action.type) {
+    case SET_ANSWER0:
+      return action.payload
+    default:
+      return state
+  }
+}
+export const answerReducer1 = (state = ' ', action) => {
+  switch (action.type) {
+    case SET_ANSWER1:
+      return action.payload
+    default:
+      return state
+  }
+}
+export const answerReducer2 = (state = ' ', action) => {
+  switch (action.type) {
+    case SET_ANSWER2:
+      return action.payload
+    default:
+      return state
+  }
+}
+export const answerReducer3 = (state = ' ', action) => {
+  switch (action.type) {
+    case SET_ANSWER3:
+      return action.payload
+    default:
+      return state
+  }
+}
