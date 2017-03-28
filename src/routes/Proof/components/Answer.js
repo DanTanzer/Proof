@@ -1,6 +1,7 @@
 import React from 'react'
 
 export const Answer = (props) => ({
+  handleChange (event) {}, // this is placeholder to prevent the inaccurate onChange warning
   handleFocus (event) {
     event.target.select()
   },
@@ -10,7 +11,7 @@ export const Answer = (props) => ({
       event.preventDefault()
     } else {
       // values set by html5 data-{anything} are found in dataset
-      props.onAnswerChanged2(event.target.dataset.id, event.key)
+      props.onAnswerChanged(event.target.dataset.id, event.key)
     }
   },
   render () {
@@ -27,6 +28,7 @@ export const Answer = (props) => ({
               maxLength='1'
               value={answers[cell]}
               onFocus={this.handleFocus}
+              onChange={this.handleChange}
               onKeyUp={this.handleKeyPress} />
           })
         }

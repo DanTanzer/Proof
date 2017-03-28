@@ -1,11 +1,16 @@
 import { connect } from 'react-redux'
-import { generateEquation, onAnswerChanged, onAnswerChanged2 } from './actions'
+import { generateEquation,
+  onAnswerChanged,
+  onDifficultyLevelChange,
+  onMathTypeChange
+} from './actions'
 import Proof from './components/Proof'
 
 const mapDispatchToProps = {
-  generateEquation: () => generateEquation(),
-  onAnswerChanged: (obj) => onAnswerChanged(obj),
-  onAnswerChanged2
+  generateEquation,
+  onAnswerChanged,
+  onDifficultyLevelChange,
+  onMathTypeChange
 }
 
 const mapStateToProps = (state) => ({
@@ -13,6 +18,10 @@ const mapStateToProps = (state) => ({
   formula: state.formula,
   valid: state.valid,
   answer: state.answer,
+  config: {
+    difficultyLevel: state.config.difficultyLevel,
+    mathType: state.config.mathType
+  },
   answers: {
     input0: state.answers.input0,
     input1: state.answers.input1,

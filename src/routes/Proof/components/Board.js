@@ -30,6 +30,5 @@ Board.propTypes = {
   equation: React.PropTypes.object,
   answers: React.PropTypes.object,
   rows:React.PropTypes.array,
-  columnCount:React.PropTypes.number,
-  onAnswerChanged: React.PropTypes.func.isRequired
+  columnCount:React.PropTypes.number
 }

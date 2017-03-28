@@ -9,7 +9,9 @@ import {
   SET_ANSWER2,
   SET_ANSWER3,
   VALIDATE_ANSWER,
-  SET_ANSWER_DEFAULT
+  SET_DIFFICULTY,
+  SET_ANSWER_DEFAULT,
+  SET_MATHTYPE
 } from './actions'
 
 export const addReducer = (state = 0, action) => {
@@ -77,6 +79,23 @@ export const answerReducer0 = (state = ' ', action) => {
       return state
   }
 }
+export const difficultyReducer = (state = 'optionHard', action) => {
+  switch (action.type) {
+    case SET_DIFFICULTY:
+      return action.payload
+    default:
+      return state
+  }
+}
+export const mathTypeReducer = (state = 'optionHard', action) => {
+  switch (action.type) {
+    case SET_MATHTYPE:
+      return action.payload
+    default:
+      return state
+  }
+}
+
 export const answerReducer1 = (state = ' ', action) => {
   switch (action.type) {
     case SET_ANSWER1:

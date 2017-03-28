@@ -13,7 +13,8 @@ export const SET_ANSWER2 = 'SET_ANSWER2'
 export const SET_ANSWER3 = 'SET_ANSWER3'
 export const VALIDATE_ANSWER = 'VALIDATE_ANSWER'
 export const SET_ANSWER_DEFAULT = 'SET_ANSWER_DEFAULT'
-
+export const SET_DIFFICULTY = 'SET_DIFFICULTY'
+export const SET_MATHTYPE = 'SET_MATHTYPE'
 // ------------------------------------
 // Actions
 // ------------------------------------
@@ -47,19 +48,20 @@ export const generateEquation = () => (dispatch, getState) => {
     }
   })
 }
-export const onAnswerChanged = (obj) => (dispatch, getState) => {
+export const onDifficultyLevelChange = (level) => (dispatch) => {
   dispatch({
-    type: SET_ANSWER,
-    payload: obj
-  })
-  const state = getState()
-  const isValid = state.equation.results === utils.convertArrayToNumber(state.answer)
-  dispatch({
-    type: VALIDATE_ANSWER,
-    payload: isValid
+    type: SET_DIFFICULTY,
+    payload: level
   })
 }
-export const onAnswerChanged2 = (index, value) => (dispatch, getState) => {
+export const onMathTypeChange = (type) => (dispatch) => {
+  dispatch({
+    type: SET_MATHTYPE,
+    payload: type
+  })
+}
+
+export const onAnswerChanged = (index, value) => (dispatch, getState) => {
   dispatch({
     type: `SET_ANSWER${index}`,
     payload: value
@@ -72,3 +74,15 @@ export const onAnswerChanged2 = (index, value) => (dispatch, getState) => {
     payload: isValid
   })
 }
+// export const onAnswerChanged = (obj) => (dispatch, getState) => {
+//   dispatch({
+//     type: SET_ANSWER,
+//     payload: obj
+//   })
+//   const state = getState()
+//   const isValid = state.equation.results === utils.convertArrayToNumber(state.answer)
+//   dispatch({
+//     type: VALIDATE_ANSWER,
+//     payload: isValid
+//   })
+// }
