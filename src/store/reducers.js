@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux'
 import locationReducer from './location'
-import { equationReducer, formulaReducer, isValidAnswerReducer,
+import {
+  equationReducer,
+  formulaReducer,
+  isValidAnswerReducer,
   answerReducer,
-  answerReducer0,
-  answerReducer1,
-  answerReducer2,
-  answerReducer3,
   difficultyReducer,
-  mathTypeReducer
+  operatorReducer,
+  bcReducer
 } from '../routes/Proof/reducers'
 
 export const makeRootReducer = (asyncReducers) => {
@@ -16,15 +16,10 @@ export const makeRootReducer = (asyncReducers) => {
     equation: equationReducer,
     formula: formulaReducer,
     answer: answerReducer,
+    bc: bcReducer,
     config: combineReducers({
       difficultyLevel: difficultyReducer,
-      mathType: mathTypeReducer
-    }),
-    answers: combineReducers({
-      input0: answerReducer0,
-      input1: answerReducer1,
-      input2: answerReducer2,
-      input3: answerReducer3
+      operator: operatorReducer
     }),
     valid: isValidAnswerReducer,
     ...asyncReducers

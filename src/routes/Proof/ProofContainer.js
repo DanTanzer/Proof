@@ -2,15 +2,17 @@ import { connect } from 'react-redux'
 import { generateEquation,
   onAnswerChanged,
   onDifficultyLevelChange,
-  onMathTypeChange
+  onOperatorChange,
+  onBCChanged
 } from './actions'
 import Proof from './components/Proof'
 
 const mapDispatchToProps = {
   generateEquation,
+  onBCChanged,
   onAnswerChanged,
   onDifficultyLevelChange,
-  onMathTypeChange
+  onOperatorChange
 }
 
 const mapStateToProps = (state) => ({
@@ -18,15 +20,10 @@ const mapStateToProps = (state) => ({
   formula: state.formula,
   valid: state.valid,
   answer: state.answer,
+  bc: state.bc,
   config: {
     difficultyLevel: state.config.difficultyLevel,
-    mathType: state.config.mathType
-  },
-  answers: {
-    input0: state.answers.input0,
-    input1: state.answers.input1,
-    input2: state.answers.input2,
-    input3: state.answers.input3
+    operator: state.config.operator
   }
 })
 

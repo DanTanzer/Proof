@@ -1,27 +1,26 @@
+// ======================================================
+// Consts
+// ======================================================
 import {
-  COUNTER_ADD,
   SET_FORMULA,
   ADD_ERROR,
   SET_EQUATION,
   SET_ANSWER,
-  SET_ANSWER0,
-  SET_ANSWER1,
-  SET_ANSWER2,
-  SET_ANSWER3,
   VALIDATE_ANSWER,
   SET_DIFFICULTY,
   SET_ANSWER_DEFAULT,
-  SET_MATHTYPE
+  SET_OPERATOR,
+  SET_BC,
+  SET_BC_DEFAULT
 } from './actions'
+import {
+  HARD as defaultDifficulty,
+  ADD as defaultOperator
+} from './components/Config'
 
-export const addReducer = (state = 0, action) => {
-  switch (action.type) {
-    case COUNTER_ADD:
-      return state + action.payload
-    default:
-      return state
-  }
-}
+// ======================================================
+// Reducers
+// ======================================================
 export const equationReducer = (state = {}, action) => {
   switch (action.type) {
     case SET_EQUATION:
@@ -63,6 +62,19 @@ export const answerReducer = (state = [], action) => {
       return state
   }
 }
+
+export const bcReducer = (state = [], action) => {
+  switch (action.type) {
+    case SET_BC_DEFAULT:
+      return [...action.payload]
+    case SET_BC:
+      let temp = [...state]
+      temp[action.payload.position] = action.payload.value
+      return temp
+    default:
+      return state
+  }
+}
 export const isValidAnswerReducer = (state = false, action) => {
   switch (action.type) {
     case VALIDATE_ANSWER:
@@ -71,15 +83,8 @@ export const isValidAnswerReducer = (state = false, action) => {
       return state
   }
 }
-export const answerReducer0 = (state = ' ', action) => {
-  switch (action.type) {
-    case SET_ANSWER0:
-      return action.payload
-    default:
-      return state
-  }
-}
-export const difficultyReducer = (state = 'optionHard', action) => {
+
+export const difficultyReducer = (state = defaultDifficulty, action) => {
   switch (action.type) {
     case SET_DIFFICULTY:
       return action.payload
@@ -87,34 +92,9 @@ export const difficultyReducer = (state = 'optionHard', action) => {
       return state
   }
 }
-export const mathTypeReducer = (state = 'optionHard', action) => {
+export const operatorReducer = (state = defaultOperator, action) => {
   switch (action.type) {
-    case SET_MATHTYPE:
-      return action.payload
-    default:
-      return state
-  }
-}
-
-export const answerReducer1 = (state = ' ', action) => {
-  switch (action.type) {
-    case SET_ANSWER1:
-      return action.payload
-    default:
-      return state
-  }
-}
-export const answerReducer2 = (state = ' ', action) => {
-  switch (action.type) {
-    case SET_ANSWER2:
-      return action.payload
-    default:
-      return state
-  }
-}
-export const answerReducer3 = (state = ' ', action) => {
-  switch (action.type) {
-    case SET_ANSWER3:
+    case SET_OPERATOR:
       return action.payload
     default:
       return state

@@ -1,3 +1,10 @@
+import {
+  EASY,
+  MEDIUM,
+  HARD,
+  SUBTRACT
+  } from './components/Config'
+
 function getRandomIntInclusive (min, max) {
   min = Math.ceil(min)
   max = Math.floor(max)
@@ -27,15 +34,43 @@ const CalculatorOperations = {
   '-': (prevValue, nextValue) => prevValue - nextValue,
   '=': (prevValue, nextValue) => nextValue
 }
+const getTerms = (config) => {
+  let high = 0
+  let low = 0
+  switch (config.difficultyLevel) {
+    case EASY:
+      high = 10
+      break
+    case MEDIUM:
+      high = 100
+      low = 20
+      break
+    case HARD:
+      high = 1000
+      low = 100
+      break
+    default:
+      low = 0
+      high = 10
+  }
+  let left = getRandomIntInclusive(low, high)
+  let right = getRandomIntInclusive(low, high)
 
-// answer: padArray([], (results + '').length + 1),
-export const generateEquation = (callback) => {
-  // for now just return temporary equation, in the future
-  // this function will be used to generate random equations at
-  // different complexities
-  let left = getRandomIntInclusive(100, 300)
-  let right = getRandomIntInclusive(100, 300)
-  let operator = '+'
+  switch (config.operator) {
+    case SUBTRACT:
+      // swap to avoid negative values
+      if (right > left) {
+        let temp = right
+        right = left
+        left = temp
+      }
+      break
+    default:
+  }
+  return { left, right }
+}
+export const generateEquation = (config, callback) => {
+  let { left, right, operator } = getTerms(config)
   let formula = `${left}${operator}${right}=`
   let leftArray = convertToArray(left)
   let rightArray = convertToArray(right)
@@ -51,7 +86,7 @@ export const generateEquation = (callback) => {
         },
         {
           term: padArray(rightArray, maxLength),
-          operator:'+'
+          operator: operator
         }
       ],
       results: results

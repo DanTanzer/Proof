@@ -8,13 +8,12 @@ body {
   flex-direction:row;
   flex-wrap:nowrap;
 }
-
 .board {
-  width:200px;
-  display:flex;
-  flex-direction:row;
-  flex-wrap:wrap;
-  align-content: right;
+  width:100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 .btn {
   font-family: Comic Sans MS;
@@ -36,13 +35,16 @@ body {
   align-content: center;
   //border: 1px solid gray
 }
-
+.border{ 
+  border: 1px solid green
+  
+}
 .rowWrapper {
-  font-family: Comic Sans MS;
-  display:flex;
- // flex-direction:row;
- // flex-wrap:wrap;
+    font-family: Comic Sans MS;
+    display:flex;
+    flex-direction:row;
     align-items: flex-start;
+    align-content: center;
     justify-content: space-between;
   .filler {
      @extend .box-size;

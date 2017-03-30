@@ -28,7 +28,6 @@ export default Board
 
 Board.propTypes = {
   equation: React.PropTypes.object,
-  answers: React.PropTypes.object,
   rows:React.PropTypes.array,
   columnCount:React.PropTypes.number
 }

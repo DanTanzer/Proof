@@ -15,28 +15,32 @@ export const Answer = (props) => ({
     }
   },
   render () {
-    let { answers } = this.props
-    if (!answers) {
+    let { answer, equation } = this.props
+    if (!answer) {
       return <div /> // the values has not been initialized yet
     }
-    let keys = Object.keys(answers)
-    return (
-      <div className='rowWrapper'>
-        {
-          keys.map((cell, index) => {
-            return <input key={index} data-id={index} type='text' className='answer'
-              maxLength='1'
-              value={answers[cell]}
-              onFocus={this.handleFocus}
-              onChange={this.handleChange}
-              onKeyUp={this.handleKeyPress} />
-          })
-        }
-      </div>
-    )
+    let columnsNeeded = (equation.results + '').length
+    let rows = answer.map((cell, index) => {
+      let row = <input key={index} data-id={index} type='text' className='answer'
+        maxLength='1'
+        value={cell}
+        onFocus={this.handleFocus}
+        onChange={this.handleChange}
+        onKeyUp={this.handleKeyPress} />
+      return row
+    })
+
+    let filler = []
+    for (let index = answer.length; index < columnsNeeded; index++) {
+      filler.push(<div className='filler' key={index} />)
+    }
+    return <div className='rowWrapper'>
+      {rows}
+      {filler}
+    </div>
   }
 })
 Answer.propTypes = {
-  answers: React.PropTypes.object.isRequired
+  answer: React.PropTypes.array.isRequired
 }
 export default Answer

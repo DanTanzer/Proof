@@ -13,7 +13,8 @@ export const Row = (props) => ({
       }
     }
     let cells = [filler, ...term]
-    let borrowCells = (id === 1)
+
+  /* let borrowCells = (id === 1)
       ? (
         <div className='rowWrapper' >
           {
@@ -34,6 +35,7 @@ export const Row = (props) => ({
           }
         </div>
         )
+    */
     let rows = (
       <div className='rowWrapper' >
         {
@@ -46,7 +48,7 @@ export const Row = (props) => ({
 
     return (
       <div >
-        {borrowCells}
+        {/* {borrowCells} */}
         {rows}
       </div>
     )
