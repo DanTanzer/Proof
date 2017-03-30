@@ -11,7 +11,7 @@ export const BorrowCarry = (props) => ({
       event.preventDefault()
     } else {
       // values set by html5 data-{anything} are found in dataset
-      props.onBCChanged({ position: event.target.dataset.id, value:event.target.value })
+      props.onBCChanged({ position: event.target.dataset.id, value:event.key })
     }
   },
   render () {

@@ -67,7 +67,7 @@ const getTerms = (config) => {
       break
     default:
   }
-  return { left, right }
+  return { left, right, operator: config.operator }
 }
 export const generateEquation = (config, callback) => {
   let { left, right, operator } = getTerms(config)

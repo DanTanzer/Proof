@@ -11,7 +11,7 @@ export const Answer = (props) => ({
       event.preventDefault()
     } else {
       // values set by html5 data-{anything} are found in dataset
-      props.onAnswerChanged(event.target.dataset.id, event.key)
+      props.onAnswerChanged({ position: event.target.dataset.id, value:event.key })
     }
   },
   render () {
