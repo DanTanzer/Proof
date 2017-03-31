@@ -19,6 +19,7 @@ export const BorrowCarry = (props) => ({
     let columnsNeeded = equation.columnCount
     let cells = bc.map((value, index) => {
       let cell = <input key={index} data-id={index} type='text' className='borrowCarry' maxLength='1'
+        tabIndex={(columnsNeeded - index) * 2 - 1} // set tabIndex to odd numbers by 2.
         onChange={this.handleChange}
         onFocus={this.handleFocus}
         onKeyPress={this.handleKeyPress}

@@ -19,11 +19,13 @@ export const Answer = (props) => ({
     if (!answer) {
       return <div /> // the values has not been initialized yet
     }
+
     let columnsNeeded = equation.columnCount
     let cells = answer.map((value, index) => {
       let cell = <input key={index} data-id={index} type='text' className='answer'
         maxLength='1'
         value={value}
+        tabIndex={(columnsNeeded - index) * 2} // set tabIndex to even numbers by 2.
         onFocus={this.handleFocus}
         onChange={this.handleChange}
         onKeyUp={this.handleKeyPress} />

@@ -12,6 +12,9 @@ function getRandomIntInclusive (min, max) {
 }
 function convertToArray (value) {
   let results = []
+  if (value === 0) {
+    return [0]
+  }
   while (value > 0) {
     results.push(value % 10)
     value = Math.floor(value / 10)
