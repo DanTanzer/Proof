@@ -39,11 +39,11 @@ export const generateEquation = () => (dispatch, getState) => {
       })
       dispatch({
         type: SET_ANSWER_DEFAULT,
-        payload: utils.padArray([], (equation.results + '').length + 1)
+        payload: utils.padArray([], equation.columnCount)
       })
       dispatch({
         type: SET_BC_DEFAULT,
-        payload: utils.padArray([], (equation.results + '').length + 1)
+        payload: utils.padArray([], equation.columnCount)
       })
     }
   })

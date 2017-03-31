@@ -16,15 +16,15 @@ export const BorrowCarry = (props) => ({
   },
   render () {
     let { bc, equation } = this.props
-    let columnsNeeded = (equation.results + '').length
-    let rows = bc.map((cell, index) => {
-      let row = <input key={index} data-id={index} type='text' className='borrowCarry' maxLength='1'
+    let columnsNeeded = equation.columnCount
+    let cells = bc.map((value, index) => {
+      let cell = <input key={index} data-id={index} type='text' className='borrowCarry' maxLength='1'
         onChange={this.handleChange}
         onFocus={this.handleFocus}
         onKeyPress={this.handleKeyPress}
-        value={cell}
+        value={value}
       />
-      return row
+      return cell
     })
 
     let filler = []
@@ -32,8 +32,8 @@ export const BorrowCarry = (props) => ({
       filler.push(<div className='filler' key={index} />)
     }
     return <div className='rowWrapper'>
-      {rows}
       {filler}
+      {cells}
     </div>
   }
 })

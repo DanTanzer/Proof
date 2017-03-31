@@ -19,7 +19,7 @@ function convertToArray (value) {
   return results.reverse()
 }
 export const padArray = (arr, length) => {
-  let results = new Array(length - arr.length).fill(undefined).concat(arr)
+  let results = new Array(length - arr.length).fill('').concat(arr)
   return results
 }
 export const convertArrayToNumber = (arr) => {
@@ -34,6 +34,8 @@ const CalculatorOperations = {
   '-': (prevValue, nextValue) => prevValue - nextValue,
   '=': (prevValue, nextValue) => nextValue
 }
+export const numberLength = num => (num + '').length
+
 const getTerms = (config) => {
   let high = 0
   let low = 0
@@ -74,12 +76,13 @@ export const generateEquation = (config, callback) => {
   let formula = `${left}${operator}${right}=`
   let leftArray = convertToArray(left)
   let rightArray = convertToArray(right)
-  let maxLength = Math.max(leftArray.length, rightArray.length)
+  rightArray.unshift(operator) // add operator to right array
   let results = CalculatorOperations[operator](left, right)
+  let maxLength = Math.max(leftArray.length, rightArray.length, numberLength(results))
   let parsedEquation = (
     {
       formula: formula,
-      columnCount: maxLength + 1,
+      columnCount: maxLength,
       rows: [
         {
           term: padArray(leftArray, maxLength)

@@ -19,15 +19,15 @@ export const Answer = (props) => ({
     if (!answer) {
       return <div /> // the values has not been initialized yet
     }
-    let columnsNeeded = (equation.results + '').length
-    let rows = answer.map((cell, index) => {
-      let row = <input key={index} data-id={index} type='text' className='answer'
+    let columnsNeeded = equation.columnCount
+    let cells = answer.map((value, index) => {
+      let cell = <input key={index} data-id={index} type='text' className='answer'
         maxLength='1'
-        value={cell}
+        value={value}
         onFocus={this.handleFocus}
         onChange={this.handleChange}
         onKeyUp={this.handleKeyPress} />
-      return row
+      return cell
     })
 
     let filler = []
@@ -35,8 +35,8 @@ export const Answer = (props) => ({
       filler.push(<div className='filler' key={index} />)
     }
     return <div className='rowWrapper'>
-      {rows}
       {filler}
+      {cells}
     </div>
   }
 })

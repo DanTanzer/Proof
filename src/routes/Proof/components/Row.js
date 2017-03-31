@@ -2,8 +2,7 @@ import React from 'react'
 import './proof.scss'
 export const Row = (props) => ({
   render () {
-    let { term, operator, columnCount, id } = this.props
-    let i = 0
+    let { term, operator, columnCount } = this.props
     let filler = []
     for (let f = term.length; f < columnCount; f++) {
       if (filler.length === 0 && operator) {
@@ -12,46 +11,18 @@ export const Row = (props) => ({
         filler.push('')
       }
     }
-    let cells = [filler, ...term]
-
-  /* let borrowCells = (id === 1)
-      ? (
-        <div className='rowWrapper' >
-          {
-            cells.map((cell, index) => {
-              return index === 0 || index === columnCount - 1
-                ? <div key={i++} className='borrow' />
-                : <button key={i++} className='borrow' >borrow</button>
-            })
-          }
-        </div>
-        )
-      : (
-        <div className='rowWrapper' >
-          {
-            cells.map((x, index) => {
-              return <div key={index} />
-            })
-          }
-        </div>
-        )
-    */
-    let rows = (
+    let cells = [...filler, ...term]
+    let row = (
       <div className='rowWrapper' >
         {
-          cells.map(x => {
-            return <span key={i++} className='value' >{x}</span>
+          cells.map((value, index) => {
+            return <span key={index} className='value' >{value}</span>
           })
         }
       </div>
     )
 
-    return (
-      <div >
-        {/* {borrowCells} */}
-        {rows}
-      </div>
-    )
+    return row
   }
 })
 
