@@ -45,6 +45,10 @@ export const generateEquation = () => (dispatch, getState) => {
         type: SET_BC_DEFAULT,
         payload: utils.padArray([], equation.columnCount)
       })
+      dispatch({
+        type: VALIDATE_ANSWER,
+        payload: false
+      })
     }
   })
 }
