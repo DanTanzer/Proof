@@ -29,12 +29,12 @@ class Proof extends React.Component {
     return (
       <div className='proof border' >
         <Config {...this.props} />
-        <button tabIndex='0' autoFocus className='btn btn-default btn-play border' 
+        <button tabIndex='0' autoFocus className='btn btn-default btn-play'
           ref={play => this.playBtn = play}
           onClick={() => this.onClick()}>
           <FaPlay /> Play
         </button>
-        <h2 className='border'>{ formula }{ results }</h2>
+        <h2 className='formula'>{ formula }{ results }</h2>
         <Board visible={boardVisble} {...this.props} ref={board => this.board = board} />
         <Success visible={successVisble} {...this.props} />
       </div>

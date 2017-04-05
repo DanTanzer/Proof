@@ -5,7 +5,7 @@ body {
   display:none;
 }
 .proof {
-  width:300px;
+  width:340px;
   margin: 0 auto;
   display:block;
   flex-direction:row;
@@ -24,7 +24,6 @@ body {
 .borrow {
   height:13px;
   width: 32px;
-  //background:#e0e0e7;;
   font-size: 8px;
   padding: 0;
 }
@@ -38,9 +37,12 @@ body {
   align-content: center;
   //border: 1px solid gray
 }
-.border{ 
-  border: 1px solid green
-  
+.border {
+  border: 1px solid lightslategray;
+}
+.formula {
+  border-top: 1px solid lightslategray;
+  border-bottom: 1px solid lightslategray;
 }
 .rowWrapper {
     font-family: Comic Sans MS;
@@ -67,28 +69,27 @@ body {
 }
 
 .config {
-  border: 1px solid black;
+  // border: 1px solid black;
   .difficulty-wrapper{
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+    align-items: baseline;
+    justify-content: center;
     width: 100%;
-    padding:20px;
+    padding:10px;
     .radio {
       margin-top: 0px;
       width:90px;
       height:30px;
       border: 1px solid black;
-    // align-content: center;
-    // vertical-align: top;
     }
   }
   .math-types{
     width:100%;
     display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding: 20px;
+    justify-content: center;
+    padding: 10px;
     align-content: center;
+    align-items: baseline;
+    width: 100%;
   }
 }
