@@ -9,6 +9,12 @@ class Proof extends React.Component {
     super(props)
     this.state = { date: new Date() }
   }
+  componentDidUpdate (prevProp, prevState, prevContext) {
+    // place focus on playbtn when the queston is answered correctly
+    if (this.props.valid && prevProp.valid === false) {
+      this.playBtn.focus()
+    }
+  }
   onClick () {
     this.props.generateEquation()
     setTimeout(() => {
@@ -23,7 +29,9 @@ class Proof extends React.Component {
     return (
       <div className='proof border' >
         <Config {...this.props} />
-        <button tabIndex='0' autoFocus className='btn btn-default btn-play border' onClick={() => this.onClick()}>
+        <button tabIndex='0' autoFocus className='btn btn-default btn-play border' 
+          ref={play => this.playBtn = play}
+          onClick={() => this.onClick()}>
           <FaPlay /> Play
         </button>
         <h2 className='border'>{ formula }{ results }</h2>

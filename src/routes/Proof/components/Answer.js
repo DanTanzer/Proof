@@ -9,25 +9,46 @@ class Answer extends React.Component {
   handleFocus (event) {
     event.target.select()
   }
+  setFocus = (refs, inputId) => {
+    event.preventDefault()
+    setTimeout(() => {
+      refs[`input${inputId}`] && refs[`input${inputId}`].focus()
+    }, 0)
+  }
+  handleDirection (event) {
+    let handled = true
+    switch (event.key) {
+      case 'Enter':
+        this.setFocus(this.props.bcRef.refs, Number(event.target.tabIndex) + 1)
+        break
+      case 'ArrowDown':
+        this.setFocus(this.props.bcRef.refs, Number(event.target.tabIndex) + 1)
+        break
+      case 'ArrowUp':
+        this.setFocus(this.props.bcRef.refs, Number(event.target.tabIndex) - 1)
+        break
+      case 'ArrowLeft':
+        this.setFocus(this.refs, Number(event.target.tabIndex) + 2)
+        break
+      case 'ArrowRight':
+        this.setFocus(this.refs, Number(event.target.tabIndex) - 2)
+        break
+      default:
+        handled = false
+        break
+    }
+    return handled
+  }
   handleKeyPress (event) {
-    if (event.key === 'Enter') {
-      event.preventDefault()
-      let index = Number(event.target.tabIndex) + 1
-      setTimeout(() => {
-        this.props.bcRef.refs[`input${index}`] && this.props.bcRef.refs[`input${index}`].focus()
-      }, 200)
+    if (this.handleDirection(event)) {
       return
     }
     let results = ((/\d/).test(event.key))
     if (!results) {
       event.preventDefault()
     } else {
-      // values set by html5 data-{anything} are found in dataset
       this.props.onAnswerChanged({ position: event.target.dataset.id, value:event.key })
-      let index = Number(event.target.tabIndex) + 1
-      setTimeout(() => {
-        this.props.bcRef.refs[`input${index}`] && this.props.bcRef.refs[`input${index}`].focus()
-      }, 200)
+      this.setFocus(this.props.bcRef.refs, Number(event.target.tabIndex) + 1)
     }
   }
   render () {

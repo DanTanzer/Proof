@@ -10,13 +10,38 @@ class BorrowCarry extends React.Component {
   handleFocus = (event) => {
     event.target.select()
   }
-
+  setFocus = (refs, inputId) => {
+    event.preventDefault()
+    setTimeout(() => {
+      refs[`input${inputId}`] && refs[`input${inputId}`].focus()
+    }, 0)
+  }
+  handleDirection (event) {
+    let handled = true
+    switch (event.key) {
+      case 'Enter':
+        this.setFocus(this.props.answerRef.refs, Number(event.target.tabIndex) + 1)
+        break
+      case 'ArrowDown':
+        this.setFocus(this.props.answerRef.refs, Number(event.target.tabIndex) + 1)
+        break
+      case 'ArrowUp':
+        this.setFocus(this.props.answerRef.refs, Number(event.target.tabIndex) - 1)
+        break
+      case 'ArrowLeft':
+        this.setFocus(this.refs, Number(event.target.tabIndex) + 2)
+        break
+      case 'ArrowRight':
+        this.setFocus(this.refs, Number(event.target.tabIndex) - 2)
+        break
+      default:
+        handled = false
+        break
+    }
+    return handled
+  }
   handleKeyPress = (event) => {
-    if (event.key === 'Enter') {
-      let index = Number(event.target.tabIndex) + 1
-      setTimeout(() => {
-        this.props.answerRef.refs[`input${index}`] && this.props.answerRef.refs[`input${index}`].focus()
-      }, 0)
+    if (this.handleDirection(event)) {
       return
     }
     let results = ((/\d/).test(event.key))
@@ -25,11 +50,7 @@ class BorrowCarry extends React.Component {
     } else {
       // values set by html5 data-{anything} are found in dataset
       this.props.onBCChanged({ position: event.target.dataset.id, value:event.key })
-      let index = Number(event.target.tabIndex) + 1
-      // this timeout
-      setTimeout(() => {
-        this.props.answerRef.refs[`input${index}`] && this.props.answerRef.refs[`input${index}`].focus()
-      }, 0)
+      this.setFocus(this.props.answerRef.refs, Number(event.target.tabIndex) + 1)
     }
   }
   render () {
