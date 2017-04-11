@@ -17,23 +17,23 @@ export const Config = props => {
     props.onOperatorChange(event.target.value)
   }
   let { difficultyLevel, operator } = props.config
-  let baseButton = 'btn btn-success btn-block'
+  let baseButton = 'btn btn-info btn-block'
   return (
     <div className='config' >
       <div className='difficulty-wrapper btn-group' data-toggle='buttons'>
-        <label className={difficultyLevel === EASY ? baseButton : baseButton + ' active'}>
+        <label className={difficultyLevel === EASY ? baseButton + ' active' : baseButton}>
           <input type='radio' value={EASY}
             checked={difficultyLevel === EASY}
             onChange={handleDifficultyChange} />
             Easy
         </label>
-        <label className={difficultyLevel === MEDIUM ? baseButton : baseButton + ' active'}>
+        <label className={difficultyLevel === MEDIUM ? baseButton + ' active' : baseButton}>
           <input type='radio' value={MEDIUM}
             checked={difficultyLevel === MEDIUM}
             onChange={handleDifficultyChange} />
             Medium
         </label>
-        <label className={difficultyLevel === HARD ? baseButton : baseButton + ' active'}>
+        <label className={difficultyLevel === HARD ? baseButton + ' active' : baseButton}>
           <input type='radio' value={HARD}
             checked={difficultyLevel === HARD}
             onChange={handleDifficultyChange} />
@@ -41,25 +41,25 @@ export const Config = props => {
         </label>
       </div>
       <div className='math-types btn-group' data-toggle='buttons'>
-        <label className={operator === ADD ? baseButton : baseButton + ' active'}>
+        <label className={operator === ADD ? baseButton + ' active' : baseButton}>
           <input type='radio' value={ADD}
             checked={operator === ADD}
             onChange={handleOperatorChange} />
             + Add
         </label>
-        <label className={operator === SUBTRACT ? baseButton : baseButton + ' active'}>
+        <label className={operator === SUBTRACT ? baseButton + ' active' : baseButton}>
           <input type='radio' value={SUBTRACT}
             checked={operator === SUBTRACT}
             onChange={handleOperatorChange} />
             - Subtract
         </label>
-        <label className={operator === DIVIDE ? baseButton : baseButton + ' active'}>
+        <label className={operator === DIVIDE ? baseButton + ' active' : baseButton}>
           <input type='radio' value={DIVIDE}
             checked={operator === DIVIDE}
             onChange={handleOperatorChange} />
             ÷ Divide
         </label>
-        <label className={operator === MULTIPLY ? baseButton : baseButton + ' active'}>
+        <label className={operator === MULTIPLY ? baseButton + ' active' : baseButton}>
           <input type='radio' value={MULTIPLY}
             checked={operator === MULTIPLY}
             onChange={handleOperatorChange} />
